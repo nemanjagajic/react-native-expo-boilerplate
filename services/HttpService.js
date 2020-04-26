@@ -24,7 +24,6 @@ class HttpService {
   handleErrorResponse = error => {
     try {
       const { status, data } = error.response
-      console.log({error: error.response})
       if (status === 401) AsyncStorage.clear()
       Alert.alert(`Error ${status}`, data.message)
       return Promise.reject(error)
