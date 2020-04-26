@@ -6,7 +6,7 @@ import { removeUser, setLoginFinished, setLoginInProgress, setUser } from './aut
 export function* logIn$({ payload }) {
   yield put(setLoginInProgress())
   try {
-    const data = yield call(authService.logIn, {
+    const { data } = yield call(authService.logIn, {
       email: payload.email,
       password: payload.password
     })
@@ -24,6 +24,7 @@ export function* logIn$({ payload }) {
 }
 
 export function* setActiveUser$({ payload }) {
+  yield call(authService.createSession, payload.user)
   yield put(setUser(payload.user))
   payload.navigateHome()
 }
