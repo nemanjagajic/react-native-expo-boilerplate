@@ -4,8 +4,8 @@ import authService from '../../services/api/AuthService'
 import { removeUser, setLoginFinished, setLoginInProgress, setUser } from './authActions'
 
 export function* logIn$({ payload }) {
+  yield put(setLoginInProgress())
   try {
-    yield put(setLoginInProgress())
     const data = yield call(authService.logIn, {
       email: payload.email,
       password: payload.password
@@ -23,6 +23,11 @@ export function* logIn$({ payload }) {
   }
 }
 
+export function* setActiveUser$({ payload }) {
+  yield put(setUser(payload.user))
+  payload.navigateHome()
+}
+
 export function* logOut$({ payload }) {
   try {
     yield call(authService.destroySession)
@@ -31,11 +36,6 @@ export function* logOut$({ payload }) {
   } catch (e) {
     console.log(e)
   }
-}
-
-export function* setActiveUser$({ payload }) {
-  yield put(setUser(payload.user))
-  payload.navigateHome()
 }
 
 export default function* authSaga() {

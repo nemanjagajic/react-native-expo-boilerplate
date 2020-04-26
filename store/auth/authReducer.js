@@ -7,7 +7,6 @@ import {
 
 const initialState = {
   user: null,
-  authError: null,
   loginInProgress: false
 }
 

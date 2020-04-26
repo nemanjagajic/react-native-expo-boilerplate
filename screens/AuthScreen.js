@@ -10,7 +10,7 @@ const AuthScreen = props => {
 
   return (
     <View style={styles.container}>
-      <Text>Auth Screen</Text>
+      <Text style={styles.title}>Auth Screen</Text>
       <TextInput
         style={styles.input}
         placeholder={'email'}
@@ -32,7 +32,7 @@ const AuthScreen = props => {
           navigateHome: () => props.navigation.navigate('HomeScreen')
         }))}
       >
-        <Text>Log in</Text>
+        <Text style={styles.loginButton}>Log in</Text>
       </TouchableOpacity>
     </View>
   )
@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  title: {
+    fontSize: 28,
+    marginBottom: 20
+  },
   input: {
     width: 200,
     height: 40,
@@ -52,6 +56,9 @@ const styles = StyleSheet.create({
     borderColor: '#cccccc',
     borderRadius: 7,
     margin: 5,
+    padding: 10
+  },
+  loginButton: {
     padding: 10
   }
 })
